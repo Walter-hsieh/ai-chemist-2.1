@@ -1,4 +1,4 @@
-# AI Chemistry Research Assistant
+# AI Chemist-2.0
 
 <div align="center">
 
@@ -15,7 +15,7 @@
 
 ## 🧪 Overview
 
-AI Chemistry Research Assistant is a modern web application that helps researchers generate professional chemistry research proposals using AI. Simply upload your documents or specify a research topic, and the system will analyze literature, generate proposals, design molecular structures, and create publication-ready documents.
+AI Chemist-2.0 is a modern web application that helps researchers generate professional chemistry research proposals using AI. Simply upload your documents or specify a research topic, and the system will analyze literature, generate proposals, design molecular structures, and create publication-ready documents.
 
 ### ✨ What makes this special?
 
@@ -54,8 +54,8 @@ AI Chemistry Research Assistant is a modern web application that helps researche
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/ai-chemistry-assistant.git
-   cd ai-chemistry-assistant
+   git clone https://github.com/yourusername/ai-chemist-2.0.git
+   cd ai-chemist-2.0
    ```
 
 2. **Install dependencies**
@@ -114,7 +114,7 @@ Output: Comprehensive proposal ready for funding submission
 ## 🏗️ Architecture
 
 ```
-ai-chemistry-assistant/
+ai-chemist-2.0/
 ├── 🐍 Backend (Python/FastAPI)
 │   ├── main.py                 # Application entry point
 │   ├── models/schemas.py       # Data validation models
@@ -248,8 +248,8 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
 ```
 
 ```bash
-docker build -t ai-chemistry-assistant .
-docker run -p 8000:8000 ai-chemistry-assistant
+docker build -t ai-chemist-2.0 .
+docker run -p 8000:8000 ai-chemist-2.0
 ```
 
 ### Production
@@ -363,7 +363,7 @@ Made with ❤️ for the chemistry research community
 
 ```bash
 # 1. Setup
-mkdir ai-chemistry-assistant && cd ai-chemistry-assistant
+mkdir ai-chemist-2.0 && cd ai-chemist-2.0
 mkdir -p models services routers utils static/{css,js/{services,components,utils}} knowledge_base
 touch models/__init__.py services/__init__.py routers/__init__.py utils/__init__.py
 
