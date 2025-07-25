@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chemistry Research Assistant</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-flask"></i> AI Chemistry Research Assistant</h1>
+                <p>Generate comprehensive research proposals with AI assistance</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Configuration Panel -->
+            <section class="config-panel">
+                <h2><i class="fas fa-cog"></i> Configuration</h2>
+                
+                <!-- AI Provider Selection -->
+                <div class="form-group">
+                    <label for="ai-provider">AI Provider</label>
+                    <select id="ai-provider" class="form-control">
+                        <option value="google">Google Gemini</option>
+                        <option value="openai">OpenAI</option>
+                    </select>
+                </div>
+
+                <!-- API Key Input -->
+                <div class="form-group">
+                    <label for="api-key">API Key</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-key"></i>
+                        <input type="password" id="api-key" class="form-control" placeholder="Enter your API key">
+                        <button type="button" id="toggle-api-key" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Optional Model Name -->
+                <div class="form-group">
+                    <label for="model-name">Model Name (Optional)</label>
+                    <input type="text" id="model-name" class="form-control" placeholder="e.g., gemini-1.5-pro, gpt-4-turbo">
+                </div>
+            </section>
+
+            <!-- Data Source Panel -->
+            <section class="data-source-panel">
+                <h2><i class="fas fa-database"></i> Data Source</h2>
+                
+                <!-- Source Selection -->
+                <div class="form-group">
+                    <label for="data-source">Choose Data Source</label>
+                    <select id="data-source" class="form-control">
+                        <option value="semantic">Semantic Scholar</option>
+                        <option value="arxiv">arXiv</option>
+                        <option value="local">Local Knowledge Base</option>
+                    </select>
+                </div>
+
+                <!-- Local Knowledge Base Upload -->
+                <div id="local-upload-section" class="upload-section hidden">
+                    <h3><i class="fas fa-upload"></i> Upload Documents</h3>
+                    <div class="upload-area" id="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop files here or <span class="upload-link">browse</span></p>
+                        <p class="upload-info">Supported: PDF, DOCX, TXT (Max 50MB each)</p>
+                        <input type="file" id="file-input" multiple accept=".pdf,.docx,.txt" hidden>
+                    </div>
+                    <div id="file-list" class="file-list"></div>
+                    <button id="upload-btn" class="btn btn-secondary" disabled>
+                        <i class="fas fa-upload"></i> Upload Files
+                    </button>
+                    <div id="knowledge-base-stats" class="stats-display"></div>
+                </div>
+            </section>
+
+            <!-- Research Query Panel -->
+            <section class="research-panel">
+                <h2><i class="fas fa-search"></i> Research Query</h2>
+                
+                <div class="form-group">
+                    <label for="research-topic">Research Topic</label>
+                    <input type="text" id="research-topic" class="form-control" 
+                           placeholder="e.g., MOFs for carbon capture, perovskite solar cells">
+                </div>
+
+                <button id="generate-btn" class="btn btn-primary">
+                    <i class="fas fa-magic"></i> Generate Summary & Proposal
+                </button>
+            </section>
+
+            <!-- Results Section -->
+            <section id="results-section" class="results-section hidden">
+                <!-- Literature Summary -->
+                <div class="result-card">
+                    <h3><i class="fas fa-book"></i> Literature Summary</h3>
+                    <div id="summary-content" class="content-area"></div>
+                    <div class="result-meta">
+                        <span id="papers-count"></span>
+                        <span id="source-used"></span>
+                    </div>
+                </div>
+
+                <!-- Research Proposal -->
+                <div class="result-card">
+                    <h3><i class="fas fa-lightbulb"></i> Research Proposal</h3>
+                    <div class="proposal-header">
+                        <button class="toggle-btn" id="proposal-toggle">
+                            <i class="fas fa-chevron-down"></i> Show Proposal Details
+                        </button>
+                    </div>
+                    <div id="proposal-content" class="content-area collapsible collapsed"></div>
+                    
+                    <div class="action-buttons">
+                        <button id="approve-proposal" class="btn btn-success">
+                            <i class="fas fa-thumbs-up"></i> Approve Proposal
+                        </button>
+                        <button id="disapprove-proposal" class="btn btn-danger">
+                            <i class="fas fa-thumbs-down"></i> Provide Feedback
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chemical Structure Section -->
+            <section id="structure-section" class="structure-section hidden">
+                <div class="result-card">
+                    <h3><i class="fas fa-atom"></i> Proposed Chemical Structure</h3>
+                    
+                    <div class="structure-display">
+                        <div id="structure-image-container" class="image-container">
+                            <div class="loading-spinner">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Generating molecular structure...</p>
+                            </div>
+                        </div>
+                        <div id="molecule-info" class="molecule-info">
+                            <h4 id="molecule-name"></h4>
+                            <div class="molecule-details">
+                                <span id="smiles-display" class="smiles"></span>
+                                <div id="molecule-properties" class="properties"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button id="approve-structure" class="btn btn-success">
+                            <i class="fas fa-check"></i> Generate Final Documents
+                        </button>
+                        <button id="redesign-structure" class="btn btn-warning">
+                            <i class="fas fa-redo"></i> Redesign Structure
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final Documents Section -->
+            <section id="documents-section" class="documents-section hidden">
+                <div class="result-card">
+                    <h3><i class="fas fa-file-alt"></i> Research Documents</h3>
+                    
+                    <div class="documents-grid">
+                        <div class="document-item">
+                            <i class="fas fa-file-word"></i>
+                            <h4>Research Proposal</h4>
+                            <p>Complete proposal with structure and methodology</p>
+                            <a id="download-proposal" class="btn btn-download" download="Research_Proposal.docx">
+                                <i class="fas fa-download"></i> Download DOCX
+                            </a>
+                        </div>
+                        
+                        <div class="document-item">
+                            <i class="fas fa-file-excel"></i>
+                            <h4>Synthesis Recipe</h4>
+                            <p>Detailed chemical synthesis procedure</p>
+                            <a id="download-recipe" class="btn btn-download" download="Synthesis_Recipe.xlsx">
+                                <i class="fas fa-download"></i> Download XLSX
+                            </a>
+                        </div>
+                        
+                        <div class="document-item">
+                            <i class="fas fa-table"></i>
+                            <h4>Data Template</h4>
+                            <p>Experimental data recording template</p>
+                            <a id="download-template" class="btn btn-download" download="Data_Template.xlsx">
+                                <i class="fas fa-download"></i> Download XLSX
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="proposal-preview">
+                        <h4>Proposal Preview</h4>
+                        <div id="full-proposal-content" class="content-area preview-content"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <h3 id="loading-message">Processing...</h3>
+                <p id="loading-submessage">Please wait while we analyze the literature</p>
+            </div>
+        </div>
+
+        <!-- Modal for Feedback -->
+        <div id="feedback-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Provide Feedback</h3>
+                    <button class="modal-close" id="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="feedback-text">Please explain what you'd like to improve:</label>
+                    <textarea id="feedback-text" rows="4" placeholder="Be specific about what changes you'd like to see..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancel-feedback" class="btn btn-secondary">Cancel</button>
+                    <button id="submit-feedback" class="btn btn-primary">Submit Feedback</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification System -->
+        <div id="notification-container" class="notification-container"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="static/js/config.js"></script>
+    <script src="static/js/services/apiService.js"></script>
+    <script src="static/js/services/fileService.js"></script>
+    <script src="static/js/services/notificationService.js"></script>
+    <script src="static/js/components/uploadComponent.js"></script>
+    <script src="static/js/components/modalComponent.js"></script>
+    <script src="static/js/components/proposalComponent.js"></script>
+    <script src="static/js/components/structureComponent.js"></script>
+    <script src="static/js/components/documentsComponent.js"></script>
+    <script src="static/js/utils/helpers.js"></script>
+    <script src="static/js/app.js"></script>
+</body>
+</html>
