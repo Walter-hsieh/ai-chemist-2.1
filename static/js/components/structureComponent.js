@@ -109,4 +109,99 @@ class StructureComponent {
         // Display molecule name
         this.moleculeNameDisplay.textContent = structureData.name;
 
-        // Display SM
+        // Display SMILES
+        if (this.smilesDisplay) {
+            this.smilesDisplay.innerHTML = `
+                <div class="smiles-header">
+                    <span class="smiles-label">SMILES:</span>
+                    <button class="copy-btn" onclick="window.app.copySmiles('${structureData.smiles}')" title="Copy SMILES">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <div class="smiles-text">${structureData.smiles}</div>
+            `;
+        }
+
+        // Get and display molecular properties
+        try {
+            const propertiesData = await apiService.validateSmiles(structureData.smiles);
+            
+            if (propertiesData.properties && Object.keys(propertiesData.properties).length > 0) {
+                this.displayMolecularProperties(propertiesData.properties);
+            }
+        } catch (error) {
+            console.warn('Could not fetch molecular properties:', error);
+        }
+    }
+
+    displayMolecularProperties(properties) {
+        if (!this.moleculeProperties) return;
+
+        const propertyLabels = {
+            molecular_weight: 'Molecular Weight',
+            num_atoms: 'Number of Atoms',
+            num_bonds: 'Number of Bonds',
+            num_rings: 'Number of Rings',
+            lipinski_hbd: 'H-Bond Donors',
+            lipinski_hba: 'H-Bond Acceptors',
+            logp: 'LogP'
+        };
+
+        const propertyUnits = {
+            molecular_weight: 'g/mol',
+            num_atoms: '',
+            num_bonds: '',
+            num_rings: '',
+            lipinski_hbd: '',
+            lipinski_hba: '',
+            logp: ''
+        };
+
+        const propertiesHTML = Object.entries(properties)
+            .filter(([key, value]) => value !== undefined && value !== null)
+            .map(([key, value]) => {
+                const label = propertyLabels[key] || key;
+                const unit = propertyUnits[key] || '';
+                const displayValue = typeof value === 'number' ? value.toFixed(2) : value;
+                
+                return `
+                    <div class="property-item">
+                        <span class="property-label">${label}:</span>
+                        <span class="property-value">${displayValue} ${unit}</span>
+                    </div>
+                `;
+            })
+            .join('');
+
+        this.moleculeProperties.innerHTML = propertiesHTML;
+    }
+
+    approveStructure() {
+        const appState = window.app.getState();
+        if (!appState.currentSmiles || !appState.currentStructureImage || !appState.currentMoleculeName) {
+            notificationService.warning('No Structure', 'Please generate a chemical structure first');
+            return;
+        }
+        window.app.generateDocuments();
+    }
+
+    redesignStructure() {
+        const appState = window.app.getState();
+        if (!appState.currentProposal) {
+            notificationService.warning('No Proposal', 'Please generate a proposal first');
+            return;
+        }
+
+        window.modalComponent.showFeedbackModal(
+            'Redesign Chemical Structure',
+            'What properties or characteristics would you like the new structure to have?',
+            async (feedback) => {
+                await window.app.refineStructure(feedback);
+            }
+        );
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.structureComponent = new StructureComponent();
+});

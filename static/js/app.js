@@ -106,8 +106,15 @@ class ChemistryResearchApp {
     }
 
     initializeComponents() {
-        // Components are initialized automatically when their scripts load
-        // This method can be used for any additional component setup
+        console.log("App: Initializing UploadComponent...");
+        this.uploadComponent = new UploadComponent();
+        this.uploadComponent.init();
+
+        console.log("App: Initializing ProposalComponent...");
+        this.proposalComponent = new ProposalComponent();
+        this.proposalComponent.init();
+        
+        // Other components can be initialized here
     }
 
     updateApiKeyPlaceholder() {
@@ -208,8 +215,9 @@ class ChemistryResearchApp {
         
         // Reset proposal toggle to collapsed state
         this.proposalContent.classList.add('collapsed');
-        this.proposalToggle.classList.remove('expanded');
-        this.proposalToggle.innerHTML = '<i class="fas fa-chevron-down"></i> Show Proposal Details';
+        
+        // Re-bind the event listener to the new content
+        this.proposalComponent.rebindToggleEvent();
         
         // Hide structure and documents sections
         document.getElementById('structure-section').classList.add('hidden');
@@ -226,20 +234,6 @@ class ChemistryResearchApp {
             local: 'Local Knowledge Base'
         };
         return sourceNames[source] || source;
-    }
-
-    toggleProposalContent() {
-        const isCollapsed = this.proposalContent.classList.contains('collapsed');
-        
-        if (isCollapsed) {
-            this.proposalContent.classList.remove('collapsed');
-            this.proposalToggle.classList.add('expanded');
-            this.proposalToggle.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Proposal Details';
-        } else {
-            this.proposalContent.classList.add('collapsed');
-            this.proposalToggle.classList.remove('expanded');
-            this.proposalToggle.innerHTML = '<i class="fas fa-chevron-down"></i> Show Proposal Details';
-        }
     }
 
     async approveProposal() {
@@ -690,12 +684,4 @@ class ChemistryResearchApp {
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new ChemistryResearchApp();
-    
-    // Show welcome notification
-    setTimeout(() => {
-        notificationService.info(
-            'Welcome!',
-            'Configure your AI provider and start generating research proposals'
-        );
-    }, 1000);
 });

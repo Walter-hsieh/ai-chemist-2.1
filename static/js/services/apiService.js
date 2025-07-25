@@ -13,7 +13,7 @@ class ApiService {
             },
         };
 
-        return {
+        const finalOptions = {
             ...defaultOptions,
             ...options,
             headers: {
@@ -21,13 +21,28 @@ class ApiService {
                 ...options.headers,
             },
         };
+
+        // Allow content-type to be removed for FormData
+        if (options.body instanceof FormData) {
+            delete finalOptions.headers['Content-Type'];
+        }
+
+        return finalOptions;
     }
 
     // Handle API response
     async handleResponse(response) {
         if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || `HTTP ${response.status}: ${response.statusText}`);
+            const errorData = await response.json().catch(() => ({ detail: 'Unknown error format' }));
+            let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+            if (errorData && errorData.detail) {
+                if (typeof errorData.detail === 'string') {
+                    errorMessage = errorData.detail;
+                } else {
+                    errorMessage = JSON.stringify(errorData.detail);
+                }
+            }
+            throw new Error(errorMessage);
         }
 
         const contentType = response.headers.get('content-type');
@@ -55,11 +70,10 @@ class ApiService {
     // Upload files
     async uploadFiles(files) {
         const formData = new FormData();
-        files.forEach(file => formData.append('files', file));
+        files.forEach(file => formData.append('files', file, file.name));
 
         return await this.apiCall(Config.ENDPOINTS.upload, {
             method: 'POST',
-            headers: {}, // Let browser set content-type for FormData
             body: formData,
         });
     }
