@@ -58,6 +58,13 @@ AI Chemist-2.0 is a modern web application that helps researchers generate profe
    cd ai-chemist-2.0
    ```
 
+**Install with Conda (Highly Recommended)**
+   Conda is the recommended method for installing RDKit because it manages all the complex non-Python dependencies automatically, leading to a much more reliable installation.
+   1. If you don't have Conda, install Miniconda first.
+   2. Run the following command in your terminal:
+   ```bash
+   conda install -c conda-forge rdkit
+   ```
 2. **Install dependencies**
    ```bash
    pip install -r requirements.txt
