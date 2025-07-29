@@ -119,7 +119,7 @@ class DocumentsComponent {
         
         const recipeUrl = this.createDownloadUrl(
             documentsData.recipe_file_base64,
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
         );
         
         const templateUrl = this.createDownloadUrl(
@@ -145,11 +145,11 @@ class DocumentsComponent {
             </div>
             
             <div class="document-item">
-                <i class="fas fa-file-excel"></i>
+                <i class="fas fa-file-word"></i>
                 <h4>Synthesis Recipe</h4>
                 <p>Detailed chemical synthesis procedure</p>
-                <a href="${recipeUrl}" class="btn btn-download" download="Synthesis_Recipe.xlsx">
-                    <i class="fas fa-download"></i> Download XLSX
+                <a href="${recipeUrl}" class="btn btn-download" download="Synthesis_Recipe.docx">
+                    <i class="fas fa-download"></i> Download DOCX
                 </a>
             </div>
             

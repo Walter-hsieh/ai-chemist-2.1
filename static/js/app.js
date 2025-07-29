@@ -538,7 +538,7 @@ class ChemistryResearchApp {
         
         const recipeUrl = this.createDownloadUrl(
             documentsData.recipe_file_base64,
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
         );
         
         const templateUrl = this.createDownloadUrl(
