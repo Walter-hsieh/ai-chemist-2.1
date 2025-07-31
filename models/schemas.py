@@ -1,6 +1,6 @@
 # models/schemas.py
 from pydantic import BaseModel, Field, validator
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 from enum import Enum
 
 class AIProvider(str, Enum):
@@ -62,6 +62,7 @@ class FinalProposalRequest(BaseAIRequest):
     smiles_string: str = Field(..., description="SMILES notation of the molecule")
     structure_image_base64: str = Field(..., description="Base64 encoded structure image")
     molecule_name: str = Field(..., description="Chemical name of the molecule")
+    availability_info: Optional[Dict[str, Any]] = Field(default=None, description="Chemical availability information")
 
 # Response Models
 class Paper(BaseModel):
@@ -83,6 +84,9 @@ class StructureResponse(BaseModel):
     smiles: str
     name: str
     image_base64: str
+    availability_info: Optional[Dict[str, Any]] = None
+    properties: Optional[Dict[str, Any]] = None
+    similar_compounds: Optional[List[Dict[str, Any]]] = None
 
 class RefinedProposalResponse(BaseModel):
     """Response model for refined proposal"""

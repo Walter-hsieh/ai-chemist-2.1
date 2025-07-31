@@ -16,7 +16,8 @@ async def generate_final_documents(request: FinalProposalRequest):
             proposal_text=request.proposal_text,
             smiles_string=request.smiles_string,
             structure_image_base64=request.structure_image_base64,
-            molecule_name=request.molecule_name
+            molecule_name=request.molecule_name,
+            availability_info=request.availability_info
         )
         
         return documents_response

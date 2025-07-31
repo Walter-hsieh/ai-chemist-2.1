@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 
-from routers import upload, research, structure, documents
+from routers import upload, research, structure, documents, history
 from utils.config import settings
 
 # Load environment variables
@@ -36,6 +36,7 @@ app.include_router(upload.router, prefix="/api", tags=["upload"])
 app.include_router(research.router, prefix="/api", tags=["research"])
 app.include_router(structure.router, prefix="/api", tags=["structure"])
 app.include_router(documents.router, prefix="/api", tags=["documents"])
+app.include_router(history.router, prefix="/api", tags=["history"])
 
 # Create knowledge base directory
 os.makedirs(settings.KNOWLEDGE_BASE_DIR, exist_ok=True)

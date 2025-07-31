@@ -8,6 +8,7 @@ from models.schemas import (
 )
 from services.research_service import research_service
 from services.ai_service import ai_service
+from services.history_service import history_service
 
 router = APIRouter()
 
@@ -32,10 +33,25 @@ async def generate_research_summary(
             limit=limit
         )
         
+        # Create research session for history tracking
+        session_id = history_service.create_research_session(
+            topic=topic,
+            source=source.value,
+            api_provider=api_provider.value
+        )
+        
         # Fetch papers from selected source
         papers = await research_service.get_papers(topic, source, limit)
         
         if not papers:
+            # Update session with failure status
+            history_service.update_research_session(
+                session_id,
+                status="failed",
+                papers_analyzed=0,
+                error="No papers found"
+            )
+            
             if source == DataSource.LOCAL:
                 return ResearchResponse(
                     topic=topic,
@@ -98,6 +114,15 @@ Literature Summary:
 Generate a compelling research proposal (2-3 paragraphs) that a chemist could pursue."""
         
         proposal_text = await ai_service.generate_response(ai_request, proposal_prompt)
+        
+        # Update session with successful completion
+        history_service.update_research_session(
+            session_id,
+            status="completed",
+            papers_analyzed=len(papers),
+            summary=summary_text[:500] + "..." if len(summary_text) > 500 else summary_text,  # Truncate for storage
+            proposal=proposal_text[:500] + "..." if len(proposal_text) > 500 else proposal_text  # Truncate for storage
+        )
         
         return ResearchResponse(
             topic=topic,

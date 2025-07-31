@@ -54,7 +54,8 @@ class StructureComponent {
             window.app.updateState({
                 currentSmiles: result.smiles,
                 currentStructureImage: `data:image/png;base64,${result.image_base64}`,
-                currentMoleculeName: result.name
+                currentMoleculeName: result.name,
+                currentAvailabilityInfo: result.availability_info || null
             });
 
             // Display structure

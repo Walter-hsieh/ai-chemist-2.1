@@ -1,0 +1,60 @@
+[
+  {
+    "session_id": "c56341e2a222",
+    "topic": "I wanna create a whole new MOF for direct air capture application. I prefer using amine addtitives to enhance MOF's capture capacity.",
+    "source": "local",
+    "api_provider": "google",
+    "timestamp": "2025-07-30T23:17:32.197553",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "For a chemist interested in creating a new MOF for direct air capture (DAC) with enhanced capacity using amine additives, the following key findings and themes emerge from the documents:\n\n### Key Findings and Themes\n\n1.  **Amine Functionalization and Synergistic Additives for Enhanced CO2 Capture:**\n    *   **Polyethyleneimine (PEI) Impregnation (Jiang et al.):** Amine-functionalized MOFs are highly promising. MIL-101(Cr) (a high surface area MOF) impregnated with PEI significantly enhances CO2 ...",
+    "proposal": "## Research Proposal: Designing \"Built-in Synergy\" MOFs with Co-functionalized Amine-Hydroxyl Linkers for Enhanced Direct Air Capture\n\nThe literature clearly demonstrates the profound impact of amine functionalization and synergistic hydroxyl additives on MOF performance for direct air capture (DAC). While post-synthetic impregnation with branched PEI and PEG (Jiang et al.) or direct integration of amine-containing triazole ligands (Gao et al.) have yielded promising results, a critical gap rema...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 58.556663,
+    "tags": [
+      "addtitives",
+      "enhance",
+      "capture"
+    ],
+    "last_updated": "2025-07-30T23:18:30.754205"
+  },
+  {
+    "session_id": "0e32ffd535cb",
+    "topic": "test synthesis of MOF materials",
+    "source": "semantic",
+    "api_provider": "google",
+    "timestamp": "2025-07-30T23:14:44.033301",
+    "papers_analyzed": 5,
+    "status": "completed",
+    "summary": "Test summary",
+    "proposal": null,
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 0.008319,
+    "tags": [
+      "synthesis",
+      "materials"
+    ],
+    "last_updated": "2025-07-30T23:14:44.041611"
+  },
+  {
+    "session_id": "41eeed39e518",
+    "topic": "test synthesis of MOF materials",
+    "source": "semantic",
+    "api_provider": "google",
+    "timestamp": "2025-07-30T23:09:54.007364",
+    "papers_analyzed": 5,
+    "status": "completed",
+    "summary": "Test summary",
+    "proposal": null,
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 0.007045,
+    "tags": [
+      "materials",
+      "synthesis"
+    ],
+    "last_updated": "2025-07-30T23:09:54.014401"
+  }
+]

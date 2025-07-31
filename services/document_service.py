@@ -11,6 +11,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 from models.schemas import BaseAIRequest, FinalDocumentsResponse
 from services.ai_service import ai_service
+from services.template_service import template_service
 
 class DocumentService:
     """Service for generating research documents"""
@@ -115,14 +116,15 @@ class DocumentService:
         proposal_text: str,
         smiles_string: str,
         structure_image_base64: str,
-        molecule_name: str
+        molecule_name: str,
+        availability_info: dict = None
     ) -> FinalDocumentsResponse:
         """Generate all final documents for the research proposal"""
         
         try:
-            # Generate comprehensive proposal text
-            full_proposal = await self._generate_full_proposal(
-                request, summary_text, proposal_text, smiles_string, molecule_name
+            # Generate comprehensive proposal text using enhanced template
+            full_proposal = await template_service.generate_enhanced_proposal(
+                request, summary_text, proposal_text, smiles_string, molecule_name, availability_info
             )
             
             # Generate synthesis recipe

@@ -47,7 +47,8 @@ class DocumentsComponent {
                 proposal_text: state.currentProposal,
                 smiles_string: state.currentSmiles,
                 structure_image_base64: state.currentStructureImage.replace('data:image/png;base64,', ''),
-                molecule_name: state.currentMoleculeName
+                molecule_name: state.currentMoleculeName,
+                availability_info: state.currentAvailabilityInfo || null
             };
 
             // Generate documents

@@ -11,6 +11,7 @@ from rdkit.Chem import rdDepictor
 
 from models.schemas import BaseAIRequest, StructureResponse
 from services.ai_service import ai_service
+from services.chemical_info_service import chemical_info_service
 from utils.config import settings
 
 class StructureService:
@@ -32,11 +33,25 @@ class StructureService:
 
                 # Validate and generate structure image
                 image_base64 = self._generate_structure_image(smiles)
+                
+                # Verify chemical availability
+                availability_info = await chemical_info_service.verify_chemical_availability(smiles, name)
+                
+                # Get molecular properties
+                properties = self.get_molecule_properties(smiles)
+                
+                # If availability is low, suggest similar compounds
+                similar_compounds = []
+                if availability_info["availability_score"] < 50:
+                    similar_compounds = await chemical_info_service.search_similar_compounds(smiles)
 
                 return StructureResponse(
                     smiles=smiles,
                     name=name,
-                    image_base64=image_base64
+                    image_base64=image_base64,
+                    availability_info=availability_info,
+                    properties=properties,
+                    similar_compounds=similar_compounds
                 )
 
             except ValueError as e:
@@ -59,17 +74,18 @@ class StructureService:
 
     async def _generate_smiles_and_name(self, request: BaseAIRequest, proposal_text: str) -> Tuple[str, str]:
         """Generates a SMILES string and chemical name using an AI service."""
-        prompt = f"""Based on the following research proposal, generate a plausible chemical compound that could be synthesized for this research.
+        prompt = f"""Based on the following research proposal, identify a commercially available or well-documented chemical compound relevant to the research goals.
 
 Respond ONLY in this exact format:
 SMILES: [valid SMILES string]
 NAME: [chemical name - IUPAC or common name]
+SOURCE: [e.g., PubChem CID, Sigma-Aldrich catalog number, DOI of a relevant paper]
 
 Requirements:
-- The SMILES must be chemically valid and synthesizable.
-- The compound should be relevant to the research goal.
-- Prefer simpler, more stable compounds.
-- Avoid highly complex or unstable structures.
+- The compound must be commercially available or have a published, reproducible synthesis.
+- Provide a specific source (e.g., PubChem CID, catalog number, or DOI) to verify the compound's existence and availability.
+- The compound's function must be directly relevant to the stated research proposal.
+- Prioritize compounds with established safety and handling protocols.
 
 Research Proposal:
 {proposal_text}"""

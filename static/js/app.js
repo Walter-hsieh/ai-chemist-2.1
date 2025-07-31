@@ -8,6 +8,7 @@ class ChemistryResearchApp {
             currentSmiles: '',
             currentStructureImage: '',
             currentMoleculeName: '',
+            currentAvailabilityInfo: null,
             currentTopic: '',
             isProcessing: false
         };
