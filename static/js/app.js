@@ -5,6 +5,7 @@ class ChemistryResearchApp {
         this.state = {
             currentSummary: '',
             currentProposal: '',
+            currentReason: '',
             currentSmiles: '',
             currentStructureImage: '',
             currentMoleculeName: '',
@@ -34,6 +35,7 @@ class ChemistryResearchApp {
         this.resultsSection = document.getElementById('results-section');
         this.summaryContent = document.getElementById('summary-content');
         this.proposalContent = document.getElementById('proposal-content');
+        this.reasonContent = document.getElementById('reason-content');
         this.proposalToggle = document.getElementById('proposal-toggle');
         this.papersCount = document.getElementById('papers-count');
         this.sourceUsed = document.getElementById('source-used');
@@ -178,6 +180,7 @@ class ChemistryResearchApp {
             // Update state with results
             this.state.currentSummary = result.summary;
             this.state.currentProposal = result.proposal;
+            this.state.currentReason = result.reason;
 
             // Display results
             this.displayResearchResults(result);
@@ -209,6 +212,9 @@ class ChemistryResearchApp {
         
         // Populate proposal
         this.proposalContent.textContent = result.proposal;
+
+        // Populate reason
+        this.reasonContent.textContent = result.reason;
         
         // Update metadata
         this.papersCount.textContent = `${result.papers_analyzed} papers analyzed`;

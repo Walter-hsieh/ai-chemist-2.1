@@ -1,5 +1,24 @@
 [
   {
+    "session_id": "abae6b963965",
+    "topic": "test synthesis of MOF materials",
+    "source": "semantic",
+    "api_provider": "google",
+    "timestamp": "2025-08-01T08:58:43.673889",
+    "papers_analyzed": 5,
+    "status": "completed",
+    "summary": "Test summary",
+    "proposal": null,
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 0.000948,
+    "tags": [
+      "materials",
+      "synthesis"
+    ],
+    "last_updated": "2025-08-01T08:58:43.674824"
+  },
+  {
     "session_id": "c56341e2a222",
     "topic": "I wanna create a whole new MOF for direct air capture application. I prefer using amine addtitives to enhance MOF's capture capacity.",
     "source": "local",

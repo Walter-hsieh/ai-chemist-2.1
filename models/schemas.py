@@ -76,6 +76,7 @@ class ResearchResponse(BaseModel):
     topic: str
     summary: str
     proposal: str
+    reason: str
     papers_analyzed: int
     source_used: DataSource
 

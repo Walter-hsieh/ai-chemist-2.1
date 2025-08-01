@@ -115,6 +115,20 @@ Generate a compelling research proposal (2-3 paragraphs) that a chemist could pu
         
         proposal_text = await ai_service.generate_response(ai_request, proposal_prompt)
         
+        reason_prompt = f"""Based on the following literature summary and research proposal, provide a concise (1-2 paragraphs) justification for why the proposed chemical or material is a good choice for the research topic.
+
+Focus on how it addresses the identified research gaps or builds upon existing work.
+
+Literature Summary:
+{summary_text}
+
+Research Proposal:
+{proposal_text}
+
+Provide a clear and compelling reason for selecting the proposed material."""
+
+        reason_text = await ai_service.generate_response(ai_request, reason_prompt)
+
         # Update session with successful completion
         history_service.update_research_session(
             session_id,
@@ -128,6 +142,7 @@ Generate a compelling research proposal (2-3 paragraphs) that a chemist could pu
             topic=topic,
             summary=summary_text,
             proposal=proposal_text,
+            reason=reason_text,
             papers_analyzed=len(papers),
             source_used=source
         )
