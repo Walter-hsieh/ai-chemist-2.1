@@ -108,7 +108,7 @@ An intelligent web application that helps chemists generate comprehensive resear
    
    Or alternatively:
    ```bash
-   uvicorn main:app --host 0.0.0.0 --port 8000
+   uvicorn main:app
    ```
 
 7. **Open your browser**
