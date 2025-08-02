@@ -250,3 +250,6 @@ class UploadComponent {
 // document.addEventListener('DOMContentLoaded', () => {
 //     window.uploadComponent = new UploadComponent();
 // });
+
+// Expose the class to the global window object so app.js can find it
+window.UploadComponent = UploadComponent;
