@@ -7,8 +7,12 @@ const Config = {
     // Default Models
     DEFAULT_MODELS: {
         google: 'gemini-2.5-flash',
-        openai: 'gpt-4'
+        openai: 'gpt-4',
+        ollama: 'llama3.1:latest'
     },
+    
+    // Default Ollama Settings
+    DEFAULT_OLLAMA_URL: 'localhost:11434',
     
     // File Upload Limits
     MAX_FILE_SIZE: 50 * 1024 * 1024, // 50MB

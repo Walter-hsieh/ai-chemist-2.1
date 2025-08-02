@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     # API Configuration
     DEFAULT_OPENAI_MODEL: str = "gpt-4"
     DEFAULT_GOOGLE_MODEL: str = "gemini-2.5-flash"
+    DEFAULT_OLLAMA_MODEL: str = "llama3.1:latest"
+    DEFAULT_OLLAMA_URL: str = "http://localhost:11434"
     
     # File Upload Limits
     MAX_FILE_SIZE: int = 50 * 1024 * 1024  # 50MB
@@ -21,6 +23,7 @@ class Settings(BaseSettings):
     # AI Model Configuration
     MAX_RETRIES: int = 3
     REQUEST_TIMEOUT: int = 30
+    OLLAMA_REQUEST_TIMEOUT: int = 120  # Ollama might need more time for local processing
     
     # Google AI Safety Settings
     GOOGLE_SAFETY_SETTINGS: Dict[HarmCategory, HarmBlockThreshold] = {

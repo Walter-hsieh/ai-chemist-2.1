@@ -1,6 +1,8 @@
 # services/ai_service.py
 import openai
 import google.generativeai as genai
+import requests
+import json
 from typing import Dict, Any
 from fastapi import HTTPException
 
@@ -13,7 +15,8 @@ class AIService:
     def __init__(self):
         self.providers = {
             AIProvider.OPENAI: self._call_openai,
-            AIProvider.GOOGLE: self._call_google
+            AIProvider.GOOGLE: self._call_google,
+            AIProvider.OLLAMA: self._call_ollama
         }
     
     async def generate_response(self, request: BaseAIRequest, prompt: str) -> str:
@@ -78,6 +81,75 @@ class AIService:
                 raise HTTPException(status_code=429, detail="Google API quota exceeded")
             else:
                 raise HTTPException(status_code=500, detail=f"Google AI error: {str(e)}")
+    
+    async def _call_ollama(self, request: BaseAIRequest, prompt: str) -> str:
+        """Call Ollama local AI API"""
+        try:
+            # Use the provided URL or default to localhost
+            ollama_url = request.api_key or settings.DEFAULT_OLLAMA_URL
+            if not ollama_url.startswith(('http://', 'https://')):
+                ollama_url = f"http://{ollama_url}"
+            
+            # Ensure URL has proper endpoint
+            if not ollama_url.endswith('/api/generate'):
+                ollama_url = ollama_url.rstrip('/') + '/api/generate'
+            
+            model_name = request.model_name or settings.DEFAULT_OLLAMA_MODEL
+            
+            payload = {
+                "model": model_name,
+                "prompt": prompt,
+                "stream": False
+            }
+            
+            response = requests.post(
+                ollama_url,
+                json=payload,
+                timeout=settings.OLLAMA_REQUEST_TIMEOUT,
+                headers={'Content-Type': 'application/json'}
+            )
+            
+            if response.status_code == 404:
+                raise HTTPException(
+                    status_code=404, 
+                    detail=f"Ollama server not found at {ollama_url}. Make sure Ollama is running."
+                )
+            
+            response.raise_for_status()
+            result = response.json()
+            
+            if 'response' not in result:
+                raise HTTPException(
+                    status_code=500,
+                    detail=f"Invalid response from Ollama: {result}"
+                )
+            
+            return result['response']
+            
+        except requests.exceptions.ConnectionError:
+            raise HTTPException(
+                status_code=503, 
+                detail=f"Cannot connect to Ollama server at {ollama_url}. Make sure Ollama is running and accessible."
+            )
+        except requests.exceptions.Timeout:
+            raise HTTPException(
+                status_code=504,
+                detail="Ollama request timed out. The model might be loading or the prompt is too complex."
+            )
+        except requests.exceptions.RequestException as e:
+            raise HTTPException(
+                status_code=503,
+                detail=f"Ollama request failed: {str(e)}"
+            )
+        except json.JSONDecodeError:
+            raise HTTPException(
+                status_code=500,
+                detail="Invalid JSON response from Ollama server"
+            )
+        except Exception as e:
+            if isinstance(e, HTTPException):
+                raise e
+            raise HTTPException(status_code=500, detail=f"Ollama error: {str(e)}")
 
 # Global AI service instance
 ai_service = AIService()

@@ -15,6 +15,10 @@ pydantic-settings
 openai
 google-generativeai
 
+# HTTP Client (for Ollama integration)
+requests
+httpx
+
 # Chemistry Libraries
 rdkit
 
@@ -22,9 +26,6 @@ rdkit
 pypdf
 python-docx
 openpyxl
-
-# HTTP Client
-requests
 
 # XML Processing (for arXiv API)
 lxml
@@ -41,12 +42,13 @@ scipy
 
 # Async support
 aiofiles
-aiohttp
+
+# JSON handling (enhanced for Ollama responses)
+orjson
 
 # Optional: Development and Testing
 pytest
 pytest-asyncio
-httpx
 
 # Optional: Code Quality
 black
@@ -59,3 +61,7 @@ mkdocs-material
 
 # Security
 cryptography
+
+# Additional dependencies for enhanced error handling
+tenacity  # For retry logic with Ollama
+validators  # For URL validation

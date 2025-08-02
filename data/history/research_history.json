@@ -1,5 +1,241 @@
 [
   {
+    "session_id": "5a572e143c69",
+    "topic": "I wanna create a whole new MOF for direct air capture application. I prefer using amine addtitives to enhance MOF's capture capacity.",
+    "source": "local",
+    "api_provider": "google",
+    "timestamp": "2025-08-02T20:21:21.127724",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "This document, \"Green synthesis of MIL-101(Cr) with enhanced direct air capture of CO2 through synergistic effects of polyethyleneimine and additives,\" provides valuable insights for a chemist aiming to develop a new MOF for direct air capture (DAC) using amine additives.\n\n### Summary for a Chemist:\n\n**Main Research Themes and Findings:**\n\n1.  **Green Synthesis of MIL-101(Cr):** The paper details an eco-friendly and scalable method for synthesizing MIL-101(Cr), a robust Cr-based MOF. This approa...",
+    "proposal": "The provided literature beautifully demonstrates the critical role of synergistic additives, particularly polyethylene glycol (PEG), in enhancing the CO₂ capture performance of PEI-impregnated MIL-101(Cr). While this post-synthetic impregnation approach is highly effective and scalable, it inherently carries limitations related to the long-term stability of the additive, potential leaching of the active components, and the challenge of precisely controlling the amine and additive dispersion with...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 58.926528,
+    "tags": [
+      "addtitives",
+      "enhance",
+      "capture"
+    ],
+    "last_updated": "2025-08-02T20:22:20.054243"
+  },
+  {
+    "session_id": "960d29a96b26",
+    "topic": "I wanna create a whole new MOF for direct air capture application. I prefer using amine addtitives to enhance MOF's capture capacity.",
+    "source": "local",
+    "api_provider": "google",
+    "timestamp": "2025-08-02T19:56:48.205040",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "Here's a summary of the key findings and themes from the provided document, tailored for a chemist interested in creating new MOFs for direct air capture (DAC) with amine additives.\n\n---\n\n### Summary for a Chemist: MOFs for Direct Air Capture with Amine Additives\n\nThis paper focuses on enhancing the performance of an existing MOF, MIL-101(Cr), for direct air capture of CO2 through a combination of green synthesis and synergistic amine/additive functionalization. The core innovation lies in impro...",
+    "proposal": "The provided literature compellingly demonstrates the significant performance enhancement for direct air capture (DAC) when polyethyleneimine (PEI) impregnated MIL-101(Cr) is co-functionalized with hydroxyl-containing additives like PEG. This synergy, attributed to improved PEI dispersion and a more efficient 1:1 CO2:amine reaction, highlights a critical design principle for highly effective amine-based adsorbents. However, the current approach relies on a bulk polymeric amine (PEI) and a separa...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 52.579043,
+    "tags": [
+      "addtitives",
+      "enhance",
+      "capture"
+    ],
+    "last_updated": "2025-08-02T19:57:40.784074"
+  },
+  {
+    "session_id": "7e9eae50898d",
+    "topic": "I wanna create a whole new MOF for direct air capture application. I prefer using amine addtitives to enhance MOF's capture capacity.",
+    "source": "local",
+    "api_provider": "google",
+    "timestamp": "2025-08-02T19:37:28.953016",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "Here's a summary of the key findings and themes from the provided document, tailored for a chemist interested in developing new MOFs with amine additives for direct air capture (DAC).\n\n---\n\n### Summary for a Chemist: MOF Design for Direct Air Capture with Amine Additives\n\nThis document focuses on enhancing the CO2 capture capacity of Metal-Organic Frameworks (MOFs) for Direct Air Capture (DAC) applications, specifically through amine functionalization and the synergistic use of various additives...",
+    "proposal": "The current research compellingly demonstrates the significant synergistic enhancement of CO2 capture in MIL-101(Cr) when polyethyleneimine (PEI) is co-impregnated with hydroxyl-rich additives like PEG, attributing the improvement to both improved PEI dispersion and a novel amine-hydroxyl facilitated CO2 chemisorption mechanism. While effective, this approach relies on the co-impregnation of two separate components, which may limit long-term stability due to potential leaching or phase separatio...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 51.696416,
+    "tags": [
+      "addtitives",
+      "enhance",
+      "capture"
+    ],
+    "last_updated": "2025-08-02T19:38:20.649422"
+  },
+  {
+    "session_id": "cd86f94026e0",
+    "topic": "I wanna create a whole new MOF for direct air capture application. I prefer using amine addtitives to enhance MOF's capture capacity.",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T19:32:35.769885",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "Okay, here's a breakdown of the provided text, focusing on key points and potential areas of interest, organized for clarity and potential use in a report or analysis.\n\n**Overall Summary:**\n\nThis text presents a series of research findings related to the use of MIL-101(Cr) as a material for direct air capture of CO2. The core focus is on modifying the MIL-101(Cr) with various additives (like PEI, mixed polyamines, PEG, and other materials) to enhance its CO2 adsorption capacity and efficiency. T...",
+    "proposal": "Okay, here’s a research proposal based on the provided literature summary, designed to be both scientifically innovative and achievable:\n\n**Research Proposal: Utilizing Bio-Derived Polyamine Composites for Enhanced, Tunable CO2 Adsorption in MIL-101(Cr)**\n\nThis research proposes to investigate the potential of incorporating bio-derived polyamines, specifically lysine and arginine, into MIL-101(Cr) frameworks to significantly improve CO2 adsorption while simultaneously addressing long-term stabil...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 115.436227,
+    "tags": [
+      "addtitives",
+      "enhance",
+      "capture"
+    ],
+    "last_updated": "2025-08-02T19:34:31.206070"
+  },
+  {
+    "session_id": "842b2bd1536e",
+    "topic": "I wanna create a whole new MOF for direct air capture application. I prefer using amine addtitives to enhance MOF's capture capacity.",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T19:24:15.043691",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "Okay, here’s a breakdown of the provided text, formatted for clarity and with key information extracted:\n\n**Overall Summary:**\n\nThe text discusses the development and characterization of MIL-101(Cr) (a metal-organic framework) for capturing carbon dioxide (CO2), particularly from air. A significant focus is on modifying the MIL-101(Cr) with additives (like polyethylenimine – PEI) and exploring the impact of these modifications on CO2 adsorption performance. It highlights the use of FTIR spectros...",
+    "proposal": "Okay, here’s a research proposal based on the provided literature summary, designed for a chemist aiming to build upon existing work:\n\n**Research Proposal: Tailoring MIL-101(Cr) Performance via Controlled Polymer Grafting and Raman Spectroscopy**\n\nThis research proposes to refine the direct air capture of CO2 using MIL-101(Cr) by moving beyond simple PEI incorporation and utilizing a more controlled grafting approach coupled with advanced spectroscopic techniques.  Current studies, as evidenced ...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 103.812065,
+    "tags": [
+      "addtitives",
+      "enhance",
+      "capture"
+    ],
+    "last_updated": "2025-08-02T19:25:58.855700"
+  },
+  {
+    "session_id": "f436218f802c",
+    "topic": "conductive mofs for ethylene separation",
+    "source": "local",
+    "api_provider": "google",
+    "timestamp": "2025-08-02T19:09:12.290765",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "This summary focuses on the key findings and themes from the provided documents, while explicitly highlighting their relevance (or lack thereof) to your specific interest in 'conductive MOFs for ethylene separation'.\n\n### Overall Relevance to 'Conductive MOFs for Ethylene Separation':\n\n**None of the provided documents directly discuss 'conductive MOFs' or 'ethylene separation'.** The primary focus across all papers is on **CO2 capture**, particularly Direct Air Capture (DAC), and general advance...",
+    "proposal": "Based on the provided literature summary, which extensively covers MOF synthesis, functionalization, and gas capture principles (primarily CO2), but notably lacks any discussion of 'conductive MOFs' or 'ethylene separation', a novel and highly relevant research direction is proposed.\n\n**Proposed Research Direction: Electrochemically-Assisted Ethylene/Ethane Separation Using Intrinsically Conductive Metal-Organic Frameworks**\n\nThe energy-intensive nature of ethylene-ethane separation in the petro...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 57.717038,
+    "tags": [
+      "ethylene",
+      "conductive",
+      "separation"
+    ],
+    "last_updated": "2025-08-02T19:10:10.007782"
+  },
+  {
+    "session_id": "765c7ddd23df",
+    "topic": "conductive mofs for ethylene separation",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T19:04:32.079046",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "Okay, here's a breakdown of the provided text, organized for clarity and including key information:\n\n**Overall Context:**\n\nThe document discusses research into metal-organic frameworks (MOFs) for carbon dioxide (CO2) capture and separation.  It focuses on factors that enhance performance, particularly selectivity and capacity.\n\n**Key Findings & Research Areas:**\n\n1.  **Induced-Fit and Surface Chemistry:**\n    *   The study emphasizes the concept of \"induced-fit,\" where the MOF structure adapts t...",
+    "proposal": "Okay, here’s a research proposal based on the provided literature summary, designed for a chemist to pursue:\n\n**Research Proposal: Tailoring Surface Reactivity in Two-Dimensional Stacked MOFs for Enhanced CO2/CH4 Selectivity**\n\nThis research will investigate a novel approach to significantly enhance the CO2/CH4 selectivity of two-dimensional stacked MOFs, building upon existing work on structures like the cited ultra-microporous MOFs. While existing research has largely focused on maximizing por...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 109.871406,
+    "tags": [
+      "ethylene",
+      "conductive",
+      "separation"
+    ],
+    "last_updated": "2025-08-02T19:06:21.950432"
+  },
+  {
+    "session_id": "b6be02b8a0f0",
+    "topic": "conductive mofs for ethylene separation",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T19:01:43.550754",
+    "papers_analyzed": 1,
+    "status": "completed",
+    "summary": "Okay, here's a breakdown of the provided text, categorized for clarity and including key information:\n\n**1. Overall Context & Research Focus:**\n\n*   **Topic:** The document discusses research into metal-organic frameworks (MOFs) for carbon dioxide (CO2) capture and separation. Specifically, it focuses on understanding how pore size and surface interactions within MOFs influence their performance.\n*   **Goal:** To develop MOFs with enhanced selectivity and efficiency for CO2 capture from mixtures...",
+    "proposal": "Okay, here’s a research proposal based on the provided literature summary, aiming for innovation and feasibility:\n\n**Research Proposal: Dynamic Lewis Acid/Base MOFs for Enhanced CO2 Capture via Adaptive Interactions**\n\nThis research will investigate a novel approach to CO2 capture leveraging the “induced-fit” mechanism within MOFs by incorporating dynamically tunable Lewis acid/base sites.  Current MOF research primarily focuses on static surface interactions.  We propose utilizing a modified ZI...",
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": 128.525333,
+    "tags": [
+      "ethylene",
+      "conductive",
+      "separation"
+    ],
+    "last_updated": "2025-08-02T19:03:52.076021"
+  },
+  {
+    "session_id": "1e5269fc016e",
+    "topic": "conductive mofs for ethylene separation",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T18:45:22.623783",
+    "papers_analyzed": 0,
+    "status": "started",
+    "summary": null,
+    "proposal": null,
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": null,
+    "tags": [
+      "ethylene",
+      "conductive",
+      "separation"
+    ]
+  },
+  {
+    "session_id": "f33b9e1eef23",
+    "topic": "conductive mofs for ethylene separation",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T18:25:15.137002",
+    "papers_analyzed": 0,
+    "status": "started",
+    "summary": null,
+    "proposal": null,
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": null,
+    "tags": [
+      "ethylene",
+      "separation",
+      "conductive"
+    ]
+  },
+  {
+    "session_id": "ae05219e5db8",
+    "topic": "conductive mofs for ethylene separation",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T18:20:02.951372",
+    "papers_analyzed": 0,
+    "status": "started",
+    "summary": null,
+    "proposal": null,
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": null,
+    "tags": [
+      "ethylene",
+      "separation",
+      "conductive"
+    ]
+  },
+  {
+    "session_id": "61478cf7cc15",
+    "topic": "conductive mofs for ethylene separation",
+    "source": "local",
+    "api_provider": "ollama",
+    "timestamp": "2025-08-02T18:18:34.514923",
+    "papers_analyzed": 0,
+    "status": "started",
+    "summary": null,
+    "proposal": null,
+    "structure_data": null,
+    "documents_generated": false,
+    "duration_seconds": null,
+    "tags": [
+      "ethylene",
+      "separation",
+      "conductive"
+    ]
+  },
+  {
     "session_id": "abae6b963965",
     "topic": "test synthesis of MOF materials",
     "source": "semantic",

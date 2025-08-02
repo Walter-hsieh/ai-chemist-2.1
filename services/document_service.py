@@ -2,7 +2,7 @@
 import io
 import base64
 import re
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from fastapi import HTTPException
 import openpyxl
 from docx import Document
@@ -11,7 +11,6 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 from models.schemas import BaseAIRequest, FinalDocumentsResponse
 from services.ai_service import ai_service
-from services.template_service import template_service
 
 class DocumentService:
     """Service for generating research documents"""
@@ -117,13 +116,13 @@ class DocumentService:
         smiles_string: str,
         structure_image_base64: str,
         molecule_name: str,
-        availability_info: dict = None
+        availability_info: Optional[str] = None
     ) -> FinalDocumentsResponse:
         """Generate all final documents for the research proposal"""
         
         try:
-            # Generate comprehensive proposal text using enhanced template
-            full_proposal = await template_service.generate_enhanced_proposal(
+            # Generate comprehensive proposal text
+            full_proposal = await self._generate_full_proposal(
                 request, summary_text, proposal_text, smiles_string, molecule_name, availability_info
             )
             
@@ -159,9 +158,14 @@ class DocumentService:
         summary_text: str,
         proposal_text: str,
         smiles_string: str,
-        molecule_name: str
+        molecule_name: str,
+        availability_info: Optional[str] = None
     ) -> str:
         """Generate comprehensive research proposal"""
+        
+        availability_section = ""
+        if availability_info:
+            availability_section = f"\n\nCompound Availability Information:\n{availability_info}"
         
         prompt = f"""You are a PhD-level chemist writing a detailed research proposal. Create a comprehensive, professional proposal that would be suitable for submission to a funding agency or academic institution.
 
@@ -181,7 +185,7 @@ CONTEXT INFORMATION:
 - Literature Summary: {summary_text}
 - Core Research Idea: {proposal_text}
 - Target Molecule: {molecule_name}
-- Target Molecule SMILES: {smiles_string}
+- Target Molecule SMILES: {smiles_string}{availability_section}
 
 REQUIREMENTS:
 - Write in a professional, academic tone
@@ -403,7 +407,6 @@ IMPORTANT FORMATTING GUIDELINES:
             # Set document style
             style = doc.styles['Normal']
             style.font.name = 'Times New Roman'
-            # Note: Cannot set font size this way in python-docx, skip this line
             
             # Add title
             title = doc.add_heading('AI-Generated Research Proposal', 0)

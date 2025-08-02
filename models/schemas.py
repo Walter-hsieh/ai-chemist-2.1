@@ -1,12 +1,13 @@
 # models/schemas.py
-from pydantic import BaseModel, Field, validator
-from typing import Optional, List, Dict, Any
+from pydantic import BaseModel, Field, validator, Extra
+from typing import Optional, List
 from enum import Enum
 
 class AIProvider(str, Enum):
     """Supported AI providers"""
     OPENAI = "openai"
     GOOGLE = "google"
+    OLLAMA = "ollama"
 
 class DataSource(str, Enum):
     """Supported data sources"""
@@ -16,16 +17,27 @@ class DataSource(str, Enum):
 
 class BaseAIRequest(BaseModel):
     """Base model for AI requests"""
-    model_config = {"protected_namespaces": ()}
     
-    api_key: str = Field(..., description="API key for the selected provider")
+    class Config:
+        extra = Extra.ignore  # Ignore extra fields instead of failing
+        protected_namespaces = ()
+    
+    api_key: str = Field(..., description="API key for the selected provider or Ollama server URL")
     api_provider: AIProvider = Field(default=AIProvider.GOOGLE, description="AI provider to use")
     model_name: Optional[str] = Field(default=None, description="Specific model name to use")
     
     @validator('api_key')
-    def validate_api_key(cls, v):
+    def validate_api_key(cls, v, values):
+        # Get the provider from the values dict
+        api_provider = values.get('api_provider')
+        
+        # For Ollama, allow empty API key (will use default localhost)
+        if api_provider == AIProvider.OLLAMA:
+            return v.strip() if v else ""
+        
+        # For other providers, require non-empty API key
         if not v or not v.strip():
-            raise ValueError('API key cannot be empty')
+            raise ValueError('API key cannot be empty for this provider')
         return v.strip()
 
 class ResearchRequest(BaseAIRequest):
@@ -57,12 +69,19 @@ class StructureRequest(BaseAIRequest):
 
 class FinalProposalRequest(BaseAIRequest):
     """Request model for final document generation"""
+    
+    class Config:
+        extra = Extra.ignore  # Ignore extra fields instead of failing
+    
     summary_text: str = Field(..., description="Literature summary")
     proposal_text: str = Field(..., description="Research proposal")
     smiles_string: str = Field(..., description="SMILES notation of the molecule")
     structure_image_base64: str = Field(..., description="Base64 encoded structure image")
     molecule_name: str = Field(..., description="Chemical name of the molecule")
-    availability_info: Optional[Dict[str, Any]] = Field(default=None, description="Chemical availability information")
+    
+    # Optional fields that might be sent by frontend
+    availability_info: Optional[str] = Field(default=None, description="Information about compound availability")
+    additional_notes: Optional[str] = Field(default=None, description="Additional notes or comments")
 
 # Response Models
 class Paper(BaseModel):
@@ -76,7 +95,6 @@ class ResearchResponse(BaseModel):
     topic: str
     summary: str
     proposal: str
-    reason: str
     papers_analyzed: int
     source_used: DataSource
 
@@ -85,9 +103,6 @@ class StructureResponse(BaseModel):
     smiles: str
     name: str
     image_base64: str
-    availability_info: Optional[Dict[str, Any]] = None
-    properties: Optional[Dict[str, Any]] = None
-    similar_compounds: Optional[List[Dict[str, Any]]] = None
 
 class RefinedProposalResponse(BaseModel):
     """Response model for refined proposal"""
