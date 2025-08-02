@@ -834,7 +834,8 @@ class ChemistryResearchApp {
                 proposal_text: String(this.state.currentProposal || ''),
                 smiles_string: String(this.state.currentSmiles || ''),
                 structure_image_base64: cleanImageBase64,
-                molecule_name: String(this.state.currentMoleculeName || '')
+                molecule_name: String(this.state.currentMoleculeName || ''),
+                availability_info: ''
             };
 
             // Add model_name only if it exists
