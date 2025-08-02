@@ -60,8 +60,8 @@ An intelligent web application that helps chemists generate comprehensive resear
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Walter-hsieh/ai-chemist-2.0.git
-   cd ai-chemist-2.0
+   git clone https://github.com/Walter-hsieh/ai-chemist-2.1.git
+   cd ai-chemist-2.1
    ```
 
 2. **Create and activate virtual environment**
@@ -184,7 +184,7 @@ DEFAULT_OLLAMA_URL=http://localhost:11434
 ## 🏗️ Project Architecture
 
 ```
-ai-chemist-2.0/
+ai-chemist-2.1/
 ├── main.py                     # FastAPI application entry point
 ├── setup.py                   # Project setup script  
 ├── requirements.txt           # Python dependencies
