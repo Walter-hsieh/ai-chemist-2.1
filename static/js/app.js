@@ -349,12 +349,12 @@ class ChemistryResearchApp {
         
         // Populate summary
         if (this.summaryContent) {
-            this.summaryContent.textContent = result.summary;
+            this.summaryContent.innerHTML = this.formatProposalText(result.summary);
         }
         
         // Populate proposal
         if (this.proposalContent) {
-            this.proposalContent.textContent = result.proposal;
+            this.proposalContent.innerHTML = this.formatProposalText(result.proposal);
         }
         
         // Update metadata
